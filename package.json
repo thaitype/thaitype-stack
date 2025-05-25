@@ -4,7 +4,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "lint": "turbo lint:check check-types && npm run format:check",
+    "lint": "turbo lint:check check-types && npm run format",
     "lint:fix": "turbo lint:fix && npm run format:fix",
     "format": "prettier --check ./**/*.{ts,js}",
     "format:fix": "prettier --write ./**/*.{ts,js}",
