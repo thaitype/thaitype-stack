@@ -1,0 +1,37 @@
+{
+  "name": "nextjs",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "lint:check": "next lint --max-warnings 0",
+    "lint:fix": "next lint --fix",
+    "format:check": "prettier -c ./**/*.{ts,tsx} && prettier -c ./*.ts",
+    "format:fix": "prettier --write ./**/*.{ts,tsx} && prettier --write ./*.ts",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@acme/ui": "workspace:*",
+    "next": "^15.2.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@acme/eslint-config": "workspace:*",
+    "@acme/typescript-config": "workspace:*",
+    "@acme/vitest-config": "workspace:*",
+    "@acme/prettier-config": "workspace:*",
+    "@types/node": "^22.13.9",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
+    "@vitest/coverage-istanbul": "^3.0.8",
+    "eslint": "^9.22.0",
+    "prettier": "^3.5.3",
+    "vitest": "^3.0.8"
+  }
+}
