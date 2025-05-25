@@ -18,10 +18,6 @@
       "dependsOn": ["@acme/vitest-config#build", "^lint:check"]
     },
     "lint:fix": {},
-    "format:check": {
-      "dependsOn": ["^format:check"]
-    },
-    "format:fix": {},
     "check-types": {
       "dependsOn": ["@acme/vitest-config#build", "^check-types"]
     },
