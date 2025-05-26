@@ -2,6 +2,7 @@
   "name": "pages-stack",
   "version": "0.0.0",
   "type": "module",
+  "main": "dist/main.js",
   "scripts": {
     "build": "run-s build:*",
     "build:web": "vite build",
@@ -30,5 +31,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "zod": "^3.22.4"
+  },
+  "zbuild": {
+    "externalDependencies": {
+      "@azure/functions-core": "external",
+      "nodejs-polars": "install"
+    }
   }
 }
