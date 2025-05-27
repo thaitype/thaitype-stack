@@ -6,11 +6,11 @@
     "build": "run-s build:*",
     "build:web": "vite build",
     "build:func": "tsx zbuild.ts build",
-    "test-func": "cd functions && func start",
+    "preview:func": "cd functions && func start",
     "dev": "run-p -l 'dev:*'",
     "dev:vite": "vite",
+    "dev:func-build": "tsx zbuild.ts watch",
     "dev:func": "func start -w --prefix functions --cors-credentials",
-    "dev:build": "run-s build:func -- --watch",
     "deploy": "swa deploy"
   },
   "license": "MIT",
