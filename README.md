@@ -13,3 +13,6 @@
 - Database
   - MongoDB
   - ...
+
+## Todo
+- migrate to use `@thaitype/funx` -- All in one toolbox for Azure Functions

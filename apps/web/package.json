@@ -2,11 +2,10 @@
   "name": "pages-stack",
   "version": "0.0.0",
   "type": "module",
-  "main": "dist/main.js",
   "scripts": {
     "build": "run-s build:*",
     "build:web": "vite build",
-    "build:func": "esbuild server/main.ts --bundle --platform=node --external:@azure/functions-core --outfile=functions/dist/main.js",
+    "build:func": "tsx zbuild.ts",
     "dev": "run-p -l 'dev:*'",
     "dev:vite": "vite",
     "dev:func": "func start -w --prefix functions --cors-credentials",
@@ -18,8 +17,10 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "chokidar": "^4.0.3",
     "esbuild": "^0.25.4",
     "npm-run-all2": "^8.0.3",
+    "tsx": "^4.19.4",
     "vite": "^5.0.8"
   },
   "dependencies": {
