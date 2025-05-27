@@ -1,5 +1,7 @@
 # 🚀 Thaitype-stack
 
+Support node 16 and above (due to https://github.com/sindresorhus/execa/releases/tag/v8.0.0)
+
 ## Stack
 - Vite + Hono + React (SPA)
 - Azure Static Web App
