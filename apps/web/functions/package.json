@@ -1,0 +1,6 @@
+{
+  "main": "dist/main.js",
+  "dependencies": {
+    "nodejs-polars": "^0.18.0"
+  }
+}

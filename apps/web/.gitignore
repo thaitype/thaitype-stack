@@ -1,0 +1,8 @@
+node_modules
+pages
+yarn.lock
+
+
+# Azure Functions Build Output
+src/server/dist
+azure-functions/dist
