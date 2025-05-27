@@ -7,7 +7,7 @@ import path from 'node:path';
 export interface ZBuildOptions {
   esbuildOptions: esbuild.BuildOptions;
   cwd?: string;
-  mode: 'dev' | 'prod';
+  mode?: 'dev' | 'prod';
   verbose?: boolean;
   watchDirectories?: string[];
 }
@@ -60,12 +60,16 @@ export async function build(option: ZBuildOptions){
 }
 
 export async function zbuild(option: ZBuildOptions) {
-  if (option.mode === 'dev') {
+  const { mode = 'prod' } = option;
+  if (mode === 'dev') {
     const watchDirectories = option.watchDirectories || ['src'];
     await watch({
       ...option,
       watchDirectories,
     }, () => build(option));
+  }
+  else {
+    await build(option);
   }
 }
 
