@@ -1,4 +1,4 @@
-// zbuild v0.0.1
+// beeze v0.0.1
 import esbuild from 'esbuild';
 import chokidar from 'chokidar';
 import path from 'node:path';
@@ -6,7 +6,7 @@ import fs from 'fs/promises';
 import z from 'zod';
 import { execa } from 'execa';
 
-export interface ZBuildOptions {
+export interface BeezeOptions {
   esbuildOptions: esbuild.BuildOptions;
   cwd?: string;
   mode?: 'watch' | 'build';
@@ -24,7 +24,7 @@ const defaultOptions: esbuild.BuildOptions = {
   target: ['node22'],
 };
 
-export async function watch(options: ZBuildOptions, buildCallback: () => Promise<void>) {
+export async function watch(options: BeezeOptions, buildCallback: () => Promise<void>) {
   if (!options.watchDirectories || options.watchDirectories.length === 0) {
     throw new Error('No directories specified to watch.');
   }
@@ -44,7 +44,7 @@ export async function watch(options: ZBuildOptions, buildCallback: () => Promise
 
 }
 
-export async function build(option: ZBuildOptions) {
+export async function build(option: BeezeOptions) {
   const { verbose, cwd = process.cwd() } = option;
 
   // Build configuration
@@ -54,7 +54,7 @@ export async function build(option: ZBuildOptions) {
   };
 
   if (verbose) {
-    console.log('ZBuild Configuration:', JSON.stringify(config, null, 2));
+    console.log('Beeze Configuration:', JSON.stringify(config, null, 2));
   }
 
   await esbuild.build({
@@ -62,7 +62,7 @@ export async function build(option: ZBuildOptions) {
   });
 }
 
-export async function zbuild(option: ZBuildOptions) {
+export async function startBeeze(option: BeezeOptions) {
   const { mode = 'build' } = option;
 
   await handleExternalDependencies(option);
@@ -80,10 +80,10 @@ export async function zbuild(option: ZBuildOptions) {
 }
 
 
-export const zBuildConfigSchema = z.object({
+export const beezeConfigSchema = z.object({
   dependencies: z.record(z.string()).optional(),
   devDependencies: z.record(z.string()).optional(),
-  zbuild: z.object({
+  beeze: z.object({
     externalDependencies: z.record(z.string(), z.union([z.literal('external'), z.literal('install')])).optional(),
   }).optional(),
 });
@@ -95,14 +95,14 @@ interface ExternalDependency {
 }
 
 function parseExternalDependencies(pkgData: unknown): ExternalDependency[] {
-  const parsed = zBuildConfigSchema.parse(pkgData);
+  const parsed = beezeConfigSchema.parse(pkgData);
 
   const dependencies = {
     ...(parsed.dependencies ?? {}),
     ...(parsed.devDependencies ?? {}),
   };
 
-  const externalDeps = parsed.zbuild?.externalDependencies ?? {};
+  const externalDeps = parsed.beeze?.externalDependencies ?? {};
   const installDeps: ExternalDependency[] = [];
 
   for (const [pkg, mode] of Object.entries(externalDeps)) {
@@ -184,7 +184,7 @@ async function installPackages({
   }
 }
 
-export async function handleExternalDependencies(option: ZBuildOptions) {
+export async function handleExternalDependencies(option: BeezeOptions) {
   const cwd = option.cwd ?? process.cwd();
   const targetDir = option.targetDir;
   if (!targetDir) return;
@@ -216,7 +216,7 @@ if (mode !== 'watch' && mode !== 'build') {
   throw new Error('Invalid mode. Use "watch" or "build".');
 }
 
-zbuild({
+startBeeze({
   esbuildOptions: {
     entryPoints: ['server/main.ts'],
     outfile: 'functions/dist/main.js',

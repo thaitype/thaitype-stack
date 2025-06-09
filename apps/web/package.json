@@ -5,11 +5,11 @@
   "scripts": {
     "build": "run-s build:*",
     "build:web": "vite build",
-    "build:func": "tsx zbuild.ts build",
+    "build:func": "tsx beeze.ts build",
     "preview:func": "cd functions && func start",
     "dev": "run-p -l 'dev:*'",
     "dev:vite": "vite",
-    "dev:func-build": "tsx zbuild.ts watch",
+    "dev:func-build": "tsx beeze.ts watch",
     "dev:func": "func start -w --prefix functions --cors-credentials",
     "deploy": "swa deploy"
   },
@@ -35,11 +35,5 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "zod": "^3.22.4"
-  },
-  "zbuild": {
-    "externalDependencies": {
-      "@azure/functions-core": "external",
-      "nodejs-polars": "install"
-    }
   }
 }
