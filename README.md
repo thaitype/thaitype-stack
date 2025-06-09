@@ -18,3 +18,6 @@ Support node 16 and above (due to https://github.com/sindresorhus/execa/releases
 
 ## Todo
 - migrate to use `@thaitype/funx` -- All in one toolbox for Azure Functions
+- migrate to use `beeze` -- Build tool for production
+- Write orpc Azure Functions Adatper, see: @marplex/hono-azurefunc-adapter
+  - Currently using `@marplex/hono-azurefunc-adapter` with orpc
